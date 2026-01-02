@@ -288,7 +288,7 @@ class MyPlugin(Star):
     #     message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
     #     logger.info(message_chain)
     #     yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!") # 发送一条纯文本消息
-    @filter("玩家")
+    @filter.command("玩家")
     async def player(self, event: AstrMessageEvent):
         message_str = event.message_str # 用户发的纯文本消息字符串
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
@@ -296,7 +296,7 @@ class MyPlugin(Star):
         parts = message_str.split(" ")
         yield event.chain_result(await get_uid_info(parts[1]) if len(parts) == 2 else "格式：/uid uid")
 
-    @filter("角色")
+    @filter.command("角色")
     async def character(self, event: AstrMessageEvent):
         message_str = event.message_str # 用户发的纯文本消息字符串
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
