@@ -32,7 +32,9 @@ class MyPlugin(Star):
         logger.info(message_chain)
         parts = message_str.split(" ")
         yield event.plain_result(f"参数：{parts[1]}!")  # 发送一条纯文本消息
-        # yield event.chain_result(await get_uid_info(parts[1]) if len(parts) == 2 else "格式：/uid uid")
+        a = await get_uid_info(parts[1]) if len(parts) == 2 else "格式：/uid uid"
+        yield event.plain_result(a)
+        yield event.plain_result(await get_uid_info(parts[1]) if len(parts) == 2 else "格式：/uid uid")
     #
     # @filter.command("角色")
     # async def character(self, event: AstrMessageEvent):
