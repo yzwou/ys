@@ -1,5 +1,5 @@
 import aiohttp
-from aliy import *
+from .aliy import *
 
 idAvatarMap = {
     10000001: '凯特',
