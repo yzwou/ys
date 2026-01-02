@@ -31,23 +31,20 @@ class MyPlugin(Star):
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
         logger.info(message_chain)
         parts = message_str.split(" ")
-        yield event.plain_result(f"参数：{parts[1]}!")  # 发送一条纯文本消息
-        a = await get_uid_info(parts[1]) if len(parts) == 2 else "格式：/uid uid"
-        yield event.plain_result(a)
         yield event.plain_result(await get_uid_info(parts[1]) if len(parts) == 2 else "格式：/uid uid")
-    #
-    # @filter.command("角色")
-    # async def character(self, event: AstrMessageEvent):
-    #     message_str = event.message_str # 用户发的纯文本消息字符串
-    #     message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
-    #     logger.info(message_chain)
-    #     parts = message_str.split(" ")
-    #     if len(parts) == 2:
-    #         yield event.chain_result(await list_roles(parts[1]))
-    #     elif len(parts) == 3:
-    #         yield event.image_result(await generate_card(parts[1], parts[2]))
-    #     else:
-    #         yield event.chain_result("格式：/角色 uid 或 /角色 uid 序号")
+
+    @filter.command("角色")
+    async def character(self, event: AstrMessageEvent):
+        message_str = event.message_str # 用户发的纯文本消息字符串
+        message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
+        logger.info(message_chain)
+        parts = message_str.split(" ")
+        if len(parts) == 2:
+            yield event.plain_result(await list_roles(parts[1]))
+        elif len(parts) == 3:
+            yield event.image_result(await generate_card(parts[1], parts[2]))
+        else:
+            yield event.plain_result("格式：/角色 uid 或 /角色 uid 序号")
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
