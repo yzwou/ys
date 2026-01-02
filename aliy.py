@@ -4,10 +4,12 @@ from datetime import datetime
 from urllib.parse import urlparse, parse_qs
 import requests
 from alibabacloud_openapi_util.client import Client as util
-from tea.request import TeaRequest
+from Tea.request import TeaRequest
 
-accessKeyId = 'LTAI5tPVbMmWsFhQ3AxV3jg9'
-accessKeySecret = 'lB2fCK6eVsFiU8G08mth99yeqOUfyc'
+import os
+
+accessKeyId = os.getenv("ALIBABA_CLOUD_ACCESS_KEY_ID")
+accessKeySecret = os.getenv("ALIBABA_CLOUD_ACCESS_KEY_SECRET")
 securityToken = None
 
 bucket_name = 'winjava21'
