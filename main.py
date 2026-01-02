@@ -3,6 +3,11 @@ from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 import astrbot.api.message_components as Comp
 
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent))
+
 from enka import *
 
 @register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
